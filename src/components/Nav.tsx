@@ -7,7 +7,7 @@ export default function Nav() {
 
   const links = [
     { href: "/#home", label: "\u0413\u043B\u0430\u0432\u043D\u0430\u044F" },
-    { href: "/#services", label: "\u0423\u0441\u043B\u0443\u0433\u0438" },
+    { href: "/services", label: "\u0423\u0441\u043B\u0443\u0433\u0438" },
     { href: "/#about", label: "\u041E \u043D\u0430\u0441" },
     { href: "/library", label: "\u041D\u043E\u0440\u043C\u0430\u0442\u0438\u0432" },
     { href: "/#contact", label: "\u041A\u043E\u043D\u0442\u0430\u043A\u0442\u044B" },

@@ -1,35 +1,68 @@
-import { books } from "@/data/books";
-import Link from "next/link";
+﻿import Link from "next/link";
+import { books, getBookCategories } from "@/data/books";
 
 export default function LibraryPage() {
-  if (books.length === 0) {
-    return (
-      <div style={{ minHeight: "100vh", backgroundColor: "#0a0a0a", color: "#e5e5e5", display: "flex", alignItems: "center", justifyContent: "center" }}>
-        <p style={{ color: "#737373", fontSize: "18px" }}>
-          {"\u041D\u043E\u0440\u043C\u0430\u0442\u0438\u0432\u043D\u0430\u044F \u043B\u0438\u0442\u0435\u0440\u0430\u0442\u0443\u0440\u0430 \u0441\u043A\u043E\u0440\u043E \u043F\u043E\u044F\u0432\u0438\u0442\u0441\u044F"}
-        </p>
-      </div>
-    );
-  }
-
   return (
     <div style={{ minHeight: "100vh", backgroundColor: "#0a0a0a", color: "#e5e5e5" }}>
-      <div style={{ maxWidth: "900px", margin: "0 auto", padding: "80px 24px 100px" }}>
+      <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "100px 24px 100px" }}>
+        <Link href="/" style={{ color: "#c9a84c", textDecoration: "none", fontSize: "15px", display: "inline-flex", alignItems: "center", gap: "6px", marginBottom: "24px" }}>
+          {"\u2190 \u041d\u0430 \u0433\u043b\u0430\u0432\u043d\u0443\u044e"}
+        </Link>
         <h1 style={{ fontSize: "32px", fontWeight: 700, color: "#fff", marginBottom: "40px" }}>
-          {"\u041D\u043E\u0440\u043C\u0430\u0442\u0438\u0432\u043D\u0430\u044F \u043B\u0438\u0442\u0435\u0440\u0430\u0442\u0443\u0440\u0430"}
+          {"\u041d\u043e\u0440\u043c\u0430\u0442\u0438\u0432\u043d\u0430\u044f \u043b\u0438\u0442\u0435\u0440\u0430\u0442\u0443\u0440\u0430"}
         </h1>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "24px" }}>
-          {books.map(book => (
-            <Link key={book.id} href={`/library/${book.id}`} style={{ textDecoration: "none" }}>
-              <div style={{ padding: "24px", borderRadius: "12px", border: "1px solid #262626", backgroundColor: "#111", height: "100%" }}>
-                <h2 style={{ fontSize: "20px", fontWeight: 600, color: "#fff", marginBottom: "8px" }}>{book.title}</h2>
-                <p style={{ fontSize: "14px", color: "#c9a84c", marginBottom: "12px" }}>{book.author}</p>
-                <p style={{ fontSize: "15px", color: "#a3a3a3", lineHeight: 1.6 }}>{book.description}</p>
-              </div>
-            </Link>
-          ))}
+        <div style={{ display: "flex", gap: "40px" }}>
+          <div style={{ width: "200px", flexShrink: 0 }}>
+            <nav style={{ position: "sticky", top: "80px", display: "flex", flexDirection: "column", gap: "4px" }}>
+              <Link href="/library" style={{
+                color: "#fff", textDecoration: "none", fontSize: "15px",
+                padding: "8px 12px", borderRadius: "6px",
+                backgroundColor: "#1c1c2e", borderLeft: "3px solid #c9a84c",
+                display: "block", marginBottom: "8px"
+              }}>
+                {"\u0412\u0441\u0435 \u0434\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u044b"}
+              </Link>
+              {getBookCategories().map(function(cat) {
+                return (
+                  <Link key={cat} href={"/library?category=" + encodeURIComponent(cat)} style={{
+                    color: "#737373", textDecoration: "none", fontSize: "15px",
+                    padding: "8px 12px", borderRadius: "6px",
+                    backgroundColor: "transparent", borderLeft: "3px solid transparent",
+                    display: "block"
+                  }}>
+                    {cat}
+                  </Link>
+                );
+              })}
+            </nav>
+          </div>
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+              {books.map(function(book) {
+                return (
+                  <Link key={book.id} href={"/library/" + book.id} style={{ textDecoration: "none" }}>
+                    <div style={{ padding: "24px", borderRadius: "12px", border: "1px solid #222", backgroundColor: "#111" }}>
+                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "10px" }}>
+                        <h3 style={{ color: "#fff", fontSize: "17px", fontWeight: 600, flex: 1 }}>{book.title}</h3>
+                        <span style={{
+                          color: "#c9a84c", backgroundColor: "rgba(201,168,76,0.1)",
+                          padding: "3px 12px", borderRadius: "999px", fontSize: "12px",
+                          flexShrink: 0, marginLeft: "12px"
+                        }}>
+                          {book.category}
+                        </span>
+                      </div>
+                      <p style={{ color: "#888", fontSize: "14px", lineHeight: 1.6, marginBottom: "10px" }}>{book.description}</p>
+                      <p style={{ color: "#555", fontSize: "13px" }}>{book.author}</p>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </div>
     </div>
   );
 }
+

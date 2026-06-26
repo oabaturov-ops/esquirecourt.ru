@@ -1,9 +1,9 @@
 ﻿import Link from "next/link";
-import { services, getServiceBySlug } from "@/data/services";
+import { getAllServices, getServiceBySlug } from "@/data/services";
 import { notFound } from "next/navigation";
 
 export function generateStaticParams() {
-  return services.map(function(s) { return { slug: s.slug }; });
+  return getAllServices().map(function(s) { return { slug: s.slug }; });
 }
 
 export default async function ServicePage({ params }: { params: Promise<{ slug: string }> }) {
@@ -40,7 +40,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                   }}>
                     {i + 1}
                   </div>
-                  <p style={{ fontSize: "16px", color: "#ccc", lineHeight: 1.7, paddingTop: "4px" }}>{work}</p>
+                  <p style={{ fontSize: "16px", color: "#ccc", lineHeight: 1.7, paddingTop: "4px" }}>{work.title}</p>
                 </div>
               );
             })}

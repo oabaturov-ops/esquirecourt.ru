@@ -1,58 +1,48 @@
-﻿import Link from "next/link";
-import { books, getBookById } from "@/data/books";
+import Link from "next/link";
+import { getAllBooks, getBookById } from "@/data/books";
 import { notFound } from "next/navigation";
 
 export function generateStaticParams() {
-  return books.map(function(b) { return { id: b.id }; });
+  return getAllBooks().map((book) => ({ id: book.id }));
 }
 
 export default async function BookPage({ params }: { params: Promise<{ id: string }> }) {
-  const resolved = await params;
-  const book = getBookById(resolved.id);
+  const { id } = await params;
+  const book = getBookById(id);
   if (!book) notFound();
 
   return (
-    <div style={{ minHeight: "100vh", backgroundColor: "#0a0a0a", color: "#e5e5e5" }}>
-      <div style={{ maxWidth: "800px", margin: "0 auto", padding: "100px 24px 100px" }}>
-        <Link href="/library" style={{ color: "#c9a84c", textDecoration: "none", fontSize: "15px", display: "inline-flex", alignItems: "center", gap: "6px", marginBottom: "24px" }}>
-          {"\u2190 \u041d\u043e\u0440\u043c\u0430\u0442\u0438\u0432\u043d\u0430\u044f \u043b\u0438\u0442\u0435\u0440\u0430\u0442\u0443\u0440\u0430"}
+    <div style={{ backgroundColor: "#0a0a0a", color: "#f5f5f5", fontFamily: "'Inter', sans-serif", minHeight: "100vh" }}>
+      <header style={{ padding: "60px 24px 40px", maxWidth: "900px", margin: "0 auto" }}>
+        <Link href="/library" style={{ color: "#d4a030", textDecoration: "none", fontSize: "14px" }}>
+          {"\u2190 \u041d\u0430\u0437\u0430\u0434 \u0432 \u0431\u0438\u0431\u043b\u0438\u043e\u0442\u0435\u043a\u0443"}
         </Link>
-        <span style={{
-          color: "#c9a84c", backgroundColor: "rgba(201,168,76,0.1)",
-          padding: "4px 14px", borderRadius: "999px", fontSize: "13px",
-          display: "inline-block", marginBottom: "16px"
-        }}>
+        <h1 style={{ fontSize: "clamp(28px, 4vw, 40px)", fontWeight: 700, margin: "16px 0 8px" }}>{book.title}</h1>
+        <span style={{ display: "inline-block", padding: "4px 12px", backgroundColor: "#1a1a1a", borderRadius: "4px", fontSize: "13px", color: "#d4a030", border: "1px solid #333" }}>
           {book.category}
         </span>
-        <h1 style={{ fontSize: "28px", fontWeight: 700, color: "#fff", marginBottom: "12px", lineHeight: 1.3 }}>
-          {book.title}
-        </h1>
-        <p style={{ color: "#888", fontSize: "15px", marginBottom: "24px" }}>{book.author}</p>
+      </header>
+
+      <main style={{ maxWidth: "900px", margin: "0 auto", padding: "0 24px 80px" }}>
         <p style={{ color: "#a3a3a3", fontSize: "17px", lineHeight: 1.8, marginBottom: "32px" }}>
-          {book.description}
+          {book.shortDescription}
         </p>
-        {book.pdfUrl && (
-          <a href={book.pdfUrl} download style={{
-            display: "inline-block", padding: "14px 32px",
-            backgroundColor: "#c9a84c", color: "#0a0a0a",
-            textDecoration: "none", borderRadius: "8px",
-            fontWeight: 700, fontSize: "15px"
-          }}>
-            {"\u0421\u043a\u0430\u0447\u0430\u0442\u044c PDF"}
-          </a>
-        )}
-        {book.externalUrl && (
-          <a href={book.externalUrl} target="_blank" rel="noopener noreferrer" style={{
-            display: "inline-block", padding: "14px 32px",
-            backgroundColor: "#222", color: "#fff",
-            textDecoration: "none", borderRadius: "8px",
-            fontWeight: 700, fontSize: "15px", marginLeft: "12px"
-          }}>
-            {"\u041e\u0442\u043a\u0440\u044b\u0442\u044c \u0438\u0441\u0442\u043e\u0447\u043d\u0438\u043a \u2192"}
-          </a>
-        )}
-      </div>
+        <div style={{ backgroundColor: "#111", border: "1px solid #222", borderRadius: "8px", padding: "40px 32px", marginBottom: "40px", whiteSpace: "pre-wrap", lineHeight: 1.8, fontSize: "15px", color: "#ccc" }}>
+          {book.fullText}
+        </div>
+        <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
+          {book.pdfUrl && (
+            <a href={book.pdfUrl} download style={{ padding: "12px 28px", backgroundColor: "#d4a030", color: "#0a0a0a", fontWeight: 600, fontSize: "15px", textDecoration: "none", borderRadius: "4px" }}>
+              {"\u0421\u043a\u0430\u0447\u0430\u0442\u044c PDF"}
+            </a>
+          )}
+          {book.sourceUrl && (
+            <a href={book.sourceUrl} target="_blank" rel="noopener noreferrer" style={{ padding: "12px 28px", backgroundColor: "transparent", color: "#d4a030", fontWeight: 600, fontSize: "15px", textDecoration: "none", borderRadius: "4px", border: "1px solid #d4a030" }}>
+              {"\u041e\u0442\u043a\u0440\u044b\u0442\u044c \u0438\u0441\u0442\u043e\u0447\u043d\u0438\u043a"}
+            </a>
+          )}
+        </div>
+      </main>
     </div>
   );
 }
-

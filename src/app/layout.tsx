@@ -3,7 +3,7 @@ import Nav from "@/components/Nav";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Esquire Court — Инженерные услуги",
+  title: "Эксперт Инжиниринг — Инженерные услуги",
   description: "Инженерные услуги: замена стояков, ремонт межпанельных швов, техническое обслуживание зданий.",
 };
 

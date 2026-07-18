@@ -2,8 +2,8 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "О нас — Esquire Court",
-  description: "Инженерная компания Esquire Court: история, миссия и команда профессионалов.",
+  title: "О нас —Эксперт Инжиниринг",
+  description: "Инженерная компанияЭксперт Инжиниринг: история, миссия и команда профессионалов.",
 };
 
 export default function AboutPage() {
@@ -21,7 +21,7 @@ export default function AboutPage() {
         {/* Intro */}
         <section style={{ marginBottom: "60px" }}>
           <p style={{ fontSize: "18px", lineHeight: 1.8, color: "#ccc", margin: 0 }}>
-            <strong style={{ color: "#d4a030" }}>Esquire Court</strong> — инженерная компания, специализирующаяся
+            <strong style={{ color: "#d4a030" }}>Эксперт Инижиниринг</strong> — инженерная компания, специализирующаяся
             на комплексном обслуживании и ремонте многоквартирных домов. Мы работаем на рынке
             жилищно-коммунального хозяйства более 15 лет и имеем обширный опыт реализации проектов
             любой сложности.

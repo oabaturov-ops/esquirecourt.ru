@@ -37,7 +37,7 @@ export default function ContactsPage() {
 
             {[
               { label: "Телефон", value: "+7 (XXX) XXX-XX-XX", icon: "📞" },
-              { label: "Email", value: "info@esquirecourt.ru", icon: "📧" },
+              { label: "Email", value: "info@Эксперт Инжиниринг.ru", icon: "📧" },
               { label: "Адрес", value: "Москва, ул. Инженерная, д. 1, офис 100", icon: "📍" },
               { label: "Режим работы", value: "Пн–Пт: 9:00–18:00", icon: "🕒" },
             ].map((item) => (

@@ -86,7 +86,7 @@ export default function HomePage() {
               color: "#ffffff",
             }}
           >
-            Esquire Court
+           Эксперт Инжиниринг
           </h1>
           <p
             style={{
@@ -275,7 +275,7 @@ export default function HomePage() {
       {/* FOOTER */}
       <footer style={{ padding: "40px 24px", borderTop: "1px solid #1a1a1a", textAlign: "center" }}>
         <div style={{ fontSize: "14px", color: "#555" }}>
-          © {new Date().getFullYear()} Esquire Court. Все права защищены.
+          © {new Date().getFullYear()}Эксперт Инжиниринг. Все права защищены.
         </div>
       </footer>
     </div>

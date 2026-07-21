@@ -13,7 +13,7 @@ var links=[
 return(
 <nav style={{position:"fixed",top:0,left:0,right:0,zIndex:1000,backgroundColor:"rgba(10,10,10,0.92)",backdropFilter:"blur(12px)",borderBottom:"1px solid #1a1a1a",padding:"0 24px"}}>
 <div style={{maxWidth:1100,margin:"0 auto",display:"flex",alignItems:"center",justifyContent:"space-between",height:64}}>
-<Link href="/" style={{fontSize:20,fontWeight:700,color:"#c9a84c",textDecoration:"none"}}><span style={{color:"#fff"}}>Esquire</span>Court</Link>
+<Link href="/" style={{fontSize:20,fontWeight:700,color:"#c9a84c",textDecoration:"none"}}><span style={{color:"#fff"}}>Esquire</span>Ing.</Link>
 <div style={{display:"flex",gap:32,alignItems:"center"}}>
 {links.map(function(l){return(
 <Link key={l.href} href={l.href} style={{color:"#a3a3a3",textDecoration:"none",fontSize:15,transition:"color 0.2s"}}

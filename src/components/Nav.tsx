@@ -8,7 +8,7 @@ var links=[
 {href:"/services",label:"\u0423\u0441\u043b\u0443\u0433\u0438"},
 {href:"/about",label:"\u041e \u043d\u0430\u0441"},
 {href:"/library",label:"\u041d\u043e\u0440\u043c\u0430\u0442\u0438\u0432"},
-{href:"/contact",label:"\u041a\u043e\u043d\u0442\u0430\u043a\u0442\u044b"}
+{href:"/contacts",label:"\u041a\u043e\u043d\u0442\u0430\u043a\u0442\u044b"}
 ];
 return(
 <nav style={{position:"fixed",top:0,left:0,right:0,zIndex:1000,backgroundColor:"rgba(10,10,10,0.92)",backdropFilter:"blur(12px)",borderBottom:"1px solid #1a1a1a",padding:"0 24px"}}>
